@@ -1,0 +1,63 @@
+using System;
+
+public class Program
+{
+    public static Homework statistics;
+
+    public static void Main()
+    {
+        statistics = new Homework();
+        Console.WriteLine("You have " + statistics.numberCountForAssignments + " assignments left and " + statistics.numberCountDaysTillDue + " days to submit.");
+    }
+}
+
+public class Homework 
+{
+    public int numberCountForAssignments = 8;
+    public string homeworkName = "math";
+    public float numberCountDaysTillDue = 5.5f;
+}
+
+public class EntryPoint
+{
+    public static void Main()
+    {
+        Program.Main();
+    }
+}
+
+
+
+
+// 
+// Objective:
+
+// This lab assignment aims to practice working with variables and operators in the C# programming language. By exploring the concepts covered in the web pages, you will gain hands-on experience in declaring variables, assigning values, performing operations, and understanding operator behavior in C#.
+
+ 
+
+// Instructions:
+
+// Watch the video as part of this assignment to use the built-in code editor, or open your preferred integrated development environment (IDE) or a text editor to write your C# code.
+// 2. Visit the following web pages:
+
+//    - [https://www.w3schools.com/cs/cs_variables.php](https://www.w3schools.com/cs/cs_variables.php)
+
+//    - [https://www.w3schools.com/cs/cs_operators.php](https://www.w3schools.com/cs/cs_operators.php)
+
+// 3. Read through the content on both web pages, paying close attention to the explanations, examples, and code snippets provided.
+
+// 4. Write a C# file that incorporates the concepts of variables and operators discussed on the web pages.
+
+// 5. Declare and initialize variables of various data types, including integers, floats, strings, and booleans. Ensure that your variable names are meaningful and follow proper naming conventions.
+
+// 6. Utilize different operators covered in the second webpage, such as arithmetic, assignment, comparison, logical, and bitwise operators. Include examples that demonstrate the behavior of these operators with your variables.
+
+// 7. Add comments to your code to explain the purpose of each variable and operator and the expected output of each example.
+
+// 8. Test your file by executing it and verifying the output https://www.w3schools.com/cs/trycs.php?filename=demo_variables.
+
+// 9. If you encounter issues or errors while writing the code, use the provided web pages as references to resolve them.
+
+// 10. Once you have completed your file, save the file with an appropriate name and the .cs extension.
+// '''
