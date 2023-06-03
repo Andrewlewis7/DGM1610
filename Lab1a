@@ -6,27 +6,26 @@ public class Program
 
     public static void Main()
     {
-        statistics = new Homework();
-        Console.WriteLine("You have " + statistics.numberCountForAssignments + " assignments left and " + statistics.numberCountDaysTillDue + " days to submit.");
+        statistics = new Homework(); //new object instance of homework
+        
+        
+        if (statistics.numberCountForAssignments > 0 && statistics.numberCountDaysTillDue > 0) //if conditional to say a total for each catagory or that there are no days/assigments left. 
+        {
+            Console.WriteLine("You have " + statistics.numberCountForAssignments + " assignments left and " + statistics.numberCountDaysTillDue + " days to submit.");
+        }
+        else
+        {
+            Console.WriteLine("No assignments left or no days left to submit. You might be screwed.");
+        }
     }
 }
 
-public class Homework 
+public class Homework //created a public class called homework that tracks assignments and days till due. also declared several variables
 {
-    public int numberCountForAssignments = 8;
+    public int numberCountForAssignments = 0;
     public string homeworkName = "math";
     public float numberCountDaysTillDue = 5.5f;
 }
-
-public class EntryPoint
-{
-    public static void Main()
-    {
-        Program.Main();
-    }
-}
-
-
 
 
 // 
