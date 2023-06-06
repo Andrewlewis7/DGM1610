@@ -6,25 +6,24 @@ public class Program
 
     public static void Main()
     {
-        Operations myOperator = new Operations();
-        courses = new School();
+        Operations myOperator = new Operations(); //created a new instance of operations
+        courses = new School(); //created a new object instance of the class School
 
         Console.WriteLine("Please enter your current subject:");
-        string subjectInput = Console.ReadLine();
-        courses.currentSubject = courses.ParseSubject(subjectInput);
+        string subject = Console.ReadLine(); //takes the input from the console
+
+        courses.currentSubject = (School.Subject)Enum.Parse(typeof(School.Subject), subject); //fancyiness courtesy of chatGTP. Im still figuring out exactly how it works. 
+        courses.CheckState(); //calls the function check state 
 
         Console.WriteLine("Please enter your exam score as a percentage");
         int score = int.Parse(Console.ReadLine());
-        Console.WriteLine("What class is the exam for?");
         myOperator.CheckScore(score);
-
-        courses.CheckState();
     }
 }
 
 public class School
 {
-    public enum Subject
+    public enum Subject //the label giver we covered during this unit
     {
         Math,
         Science,
@@ -33,9 +32,9 @@ public class School
         Default
     }
 
-    public Subject currentSubject = Subject.Default;
+    public Subject currentSubject;
 
-    public void CheckState()
+    public void CheckState() //void function that uses switch to write different lines to the console 
     {
         switch (currentSubject)
         {
@@ -56,23 +55,9 @@ public class School
                 break;
         }
     }
-
-    public Subject ParseSubject(string subjectInput)
-    {
-        if (Enum.TryParse(subjectInput, out Subject parsedSubject))
-        {
-            return parsedSubject;
-        }
-        else
-        {
-            Console.WriteLine("Invalid subject entered. Setting default subject.");
-            return Subject.Default;
-        }
-    }
 }
 
-
-public class Operations
+public class Operations //created a public class to handle checking the score of the user. 
 {
     public void CheckScore(int score)
     {
@@ -98,9 +83,6 @@ public class Operations
         }
     }
 }
-
-
-
 
 
 
