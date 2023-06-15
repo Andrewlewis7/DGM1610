@@ -1,0 +1,36 @@
+using System;
+
+public class Program
+{
+    public void Main()
+    {
+        Random random = new Random();
+        int randomNumber = random.Next(1, 11);
+        int attempts = 0;
+        bool guessedCorrectly = false;
+
+        Console.WriteLine("Please guess a number between 1 and 10");
+
+        while (!guessedCorrectly)
+        {
+            Console.Write("Enter your guess: ");
+            int guess = int.Parse(Console.ReadLine());
+            attempts++;
+
+            if (guess == randomNumber)
+            {
+                Console.WriteLine("Congratulations! You guessed the correct number!");
+                Console.WriteLine("Number of attempts: " + attempts);
+                guessedCorrectly = true;
+            }
+            else if (guess < randomNumber)
+            {
+                Console.WriteLine("Too low! Try guessing a higher number.");
+            }
+            else
+            {
+                Console.WriteLine("Too high! Try guessing a lower number.");
+            }
+        }
+    }
+}
