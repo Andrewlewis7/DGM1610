@@ -5,17 +5,17 @@ public class Program
     public void Main()
     {
         Random random = new Random();
-        int randomNumber = random.Next(1, 11);
+        int randomNumber = random.Next(1, 11); //assigns a random number to randomNumber using the .nect method.
         int attempts = 0;
-        bool guessedCorrectly = false;
+        bool guessedCorrectly = false; //sets the condition of the while loop.
 
         Console.WriteLine("Please guess a number between 1 and 10");
 
-        while (!guessedCorrectly)
+        while (!guessedCorrectly) //while loop that runs while guessedCorrectly is False
         {
             Console.Write("Enter your guess: ");
             int guess = int.Parse(Console.ReadLine());
-            attempts++;
+            attempts++; //increments the attempt counter
 
             if (guess == randomNumber)
             {
