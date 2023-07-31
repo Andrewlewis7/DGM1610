@@ -11,8 +11,6 @@ class Program
             Console.Write("Enter your favorite food: ");
             favoriteFoods[i] = Console.ReadLine();
         }
-
-        
         Console.WriteLine("Here are your foods:");
         foreach (string food in favoriteFoods) //for loop that writes all of their foods
         {

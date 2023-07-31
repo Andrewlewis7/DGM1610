@@ -1,0 +1,14 @@
+using UnityEngine;
+using System.Collections;
+
+public class Player : MonoBehaviour
+{
+    
+    // where do the files save on my pc?
+    // i think i may have found it
+    // File > Save Workspace
+    // wait maybe not
+    //im not seeing the file you created in my files. 
+    
+one sec not sure
+}

@@ -34,3 +34,4 @@ public class Homework //created a public class called homework that tracks assig
     public string homeworkName = "math";
     public float numberCountDaysTillDue = 2.0f;
 }
+C:\Users\andre\OneDrive\Documents\GitHub\DGM1610\Challenge1a.cs
