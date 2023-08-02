@@ -1,0 +1,11 @@
+Grading
+This project is worth 100 points total, but counts as a project in that category and as an exam in that category for purposes of grading. We use points for each feature in the rubric because of the open-ended nature of the project and because this is the final exam and there won’t be an in-class post-project review. We don’t want to encourage the idea that partial credit for non-compliant code is is OK.
+Rubric	Total 100 points
+Item	Points
+Variables, expressions, classes and methods expressions have proper names and proper scope	14
+Code uses branches and loops	14
+Classes, Methods and Functions: code is NOT copied multiple places in your application	15
+Code uses object collections	14
+Code uses OOP and Pythonic design principles	15
+Code passes all PEP8 style checks	14
+Implementation matches the design	14
