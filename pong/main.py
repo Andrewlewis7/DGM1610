@@ -5,7 +5,7 @@ pygame.init()
 from ball import Ball
 from paddle import Paddle
 from settings import BLACK, WHITE, WIDTH, HEIGHT, FPS, clock, screen
-
+from ai import AI
 
  
 def main():
@@ -16,6 +16,7 @@ def main():
     player1 = Paddle(20, 0, 10, 100, 10, WHITE)
     player2 = Paddle(WIDTH-30, 0, 10, 100, 10, WHITE)
     ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
+    ai = AI(player2, ball)
  
     players = [player1, player2]
  
@@ -52,7 +53,8 @@ def main():
  
         # Updating the objects
         player1.update(player1YFac)
-        player2.update(player2YFac)
+        ai.update()
+        #player2.update(player2YFac)
         point = ball.update()
  
         # -1 -> Geek_1 has scored
