@@ -16,7 +16,7 @@ def main():
     player1 = Paddle(20, 0, 10, 100, 10, WHITE)
     player2 = Paddle(WIDTH-30, 0, 10, 100, 10, WHITE)
     ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
-    ai = AI(player2, ball)
+    ai = AI(player2, ball, 'HARD')
  
     players = [player1, player2]
  
@@ -70,6 +70,7 @@ def main():
         # So, we reset it's position
         if point:  
             ball.reset()
+            ai.reset()
  
         # Displaying the objects on the screen
         player1.display()
