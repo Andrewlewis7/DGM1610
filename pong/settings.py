@@ -13,6 +13,8 @@ clock = pygame.time.Clock()
 # Controls the speed of the game. 
 FPS = 30
 
+GRAVITY = 0.5
+STOP_BOUNCE = 0.3
 
 
 

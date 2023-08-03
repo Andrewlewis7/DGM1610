@@ -15,7 +15,7 @@ def main():
     # Defining the objects
     player1 = Paddle(20, 0, 10, 100, 10, WHITE)
     player2 = Paddle(WIDTH-30, 0, 10, 100, 10, WHITE)
-    ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
+    ball = Ball(WIDTH//2, HEIGHT//2, 7, WHITE, 7, 7, .1, .1, 1)
     ai = AI(player2, ball)
  
     players = [player1, player2]
