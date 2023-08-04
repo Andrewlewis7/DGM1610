@@ -29,7 +29,7 @@ class AI:
 
 	def update(self):
 		if self.is_active:
-			print(f"Error: {self.random_error}")
+			#print(f"Error: {self.random_error}")
 			if self.difficulty == 'EASY':
 				self.random_error = self.__clamp(self.random_error + random.randint(-3, 3), -20, 20)
 			elif self.difficulty == 'MEDIUM':

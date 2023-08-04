@@ -1,16 +1,16 @@
+# ball.py
+
 import pygame
 from settings import WIDTH, HEIGHT, screen, GRAVITY, STOP_BOUNCE
+
+
 class Ball:
-    
-    def __init__(self, posx, posy, radius, color, y_speed, x_speed,  mass, retention, friction):
-        
+
+    def __init__(self, posx, posy, radius, color, y_speed, x_speed, mass, retention, friction):
         self.posx = posx
         self.posy = posy
         self.radius = radius
-        #self.speed = speed
         self.color = color
-        self.xFac = 1
-        self.yFac = -1
         self.ball = pygame.draw.circle(screen, self.color, (self.posx, self.posy), self.radius)
         self.firstTime = 1
         self.mass = mass
@@ -18,12 +18,12 @@ class Ball:
         self.y_speed = y_speed
         self.x_speed = x_speed
         self.friction = friction
- 
+        self.direction = 1
+
     def display(self):
         self.ball = pygame.draw.circle(screen, self.color, (self.posx, self.posy), self.radius)
 
     def check_gravity(self):
-        
         if self.posy < HEIGHT - self.radius:
             self.y_speed += GRAVITY
         else:
@@ -32,53 +32,44 @@ class Ball:
             else:
                 if abs(self.y_speed) <= STOP_BOUNCE:
                     self.y_speed = 0
-        if (self.posx < self.radius and self.x_speed < 0) or \
-                (self.posx > WIDTH - self.radius - self.x_speed > 0):
-            self.x_speed *= -1 * self.retention
-            if abs(self.x_speed) < STOP_BOUNCE:
-                self.x_speed = 0
         if self.y_speed == 0 and self.x_speed != 0:
-            if self.x_speed > 0:
-                self.x_speed -= self.friction
-            elif self.x_speed < 0:
-                self.x_speed += self.friction
-        else:
-            self.x_speed = x_push
-            self.y_speed = y_push
-        return self.y_speed
-    
- 
+            self.x_speed -= self.friction * self.direction
+
     def update(self):
-        self.posx += self.x_speed*self.xFac
-        self.posy += self.y_speed*self.yFac
- 
-        # If the ball hits the top or bottom surfaces,
-        # then the sign of yFac is changed and
-        # it results in a reflection
+        self.posx += self.x_speed * self.direction
+        self.posy += self.y_speed
+
         if self.posy <= 0 or self.posy >= HEIGHT:
-            self.yFac *= -1
- 
-        if self.posx <= 0 and self.firstTime:
-            self.firstTime = 0
-            return 1
-        elif self.posx >= WIDTH and self.firstTime:
-            self.firstTime = 0
-            return -1
+            self.y_speed *= -1
+
+        # Remove the speed adjustment when hitting the walls
+        if self.posx <= self.radius and self.direction == -1:
+            self.x_speed *= -self.retention
+        elif self.posx >= WIDTH - self.radius and self.direction == 1:
+            self.x_speed *= -self.retention
+
+        self.check_gravity()
+
+        if self.posx <= 0 or self.posx >= WIDTH:
+            self.firstTime = 1
+
+    def resolve_collision(self, player_rect):
+        if self.y_speed > 0:
+            self.posy = player_rect.top - self.radius
         else:
-            return 0
- 
+            self.posy = player_rect.bottom + self.radius
+        self.y_speed *= -1
+
     def reset(self):
-        self.posx = WIDTH//2
-        self.posy = HEIGHT//2
-        self.xFac *= -1
+        self.posx = WIDTH // 2
+        self.posy = HEIGHT // 2
+        self.direction *= -1
         self.firstTime = 1
- 
-    # Used to reflect the ball along the X-axis
-    def hit(self):
-        self.xFac *= -1
- 
+
+    def hit(self, y_speed_paddle):
+        self.direction *= -1
+        self.y_speed = -y_speed_paddle * self.mass  # Reverse the y_speed based on the paddle's speed and ball's mass
+    
     def getRect(self):
         return self.ball
 
-
-#-----------------------------------
