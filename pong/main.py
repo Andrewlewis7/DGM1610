@@ -19,7 +19,7 @@ def main():
     player1 = Paddle(20, 0, 10, 100, 10, GREY)
     player2 = Paddle(WIDTH-30, 0, 10, 100, 10, GREY)
     init_speed = random.choice([-7, 7])
-    ball = Ball(WIDTH//2, HEIGHT//2, 7, WHITE, 5, 5, .5, 1, init_speed)
+    ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
     ai1 = AI(player1, ball, 'IMPOSSIBLE')
     ai2 = AI(player2, ball, 'IMPOSSIBLE')
     if init_speed > 0:
@@ -76,8 +76,6 @@ def main():
         elif current_select == GameMode.OnePlayerHard:
             select_box = pygame.draw.rect(screen, WHITE, textRectOneP, 1)
             select_box = pygame.draw.rect(screen, WHITE, textRectOnePHard, 1)
-        
-        
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -111,9 +109,10 @@ def main():
 
         for i in range(len(players)):
             if pygame.Rect.colliderect(ball.getRect(), players[i].getRect()):
-                ball.hit(10)
+                #section = player.getSection(ball)
+                ball.hit2()
                 ais[i].is_active = False
-                ais[-1 - i].is_active = True  
+                ais[-1 - i].is_active = True
 
         ai1.update()
         ai2.update()
@@ -132,7 +131,7 @@ def main():
     # Defining the objects
     player1 = Paddle(20, 0, 10, 100, 10, WHITE)
     player2 = Paddle(WIDTH-30, 0, 10, 100, 10, WHITE)
-    ball = Ball(WIDTH//2, HEIGHT//2, 7, WHITE, 7, 7, .5, 5, init_speed)
+    ball = Ball(WIDTH//2, HEIGHT//2, 7, 7, WHITE)
     if current_select == GameMode.OnePlayerEasy:
         ai = AI(player2, ball, 'EASY')
     elif current_select == GameMode.OnePlayerMedium:
@@ -173,11 +172,9 @@ def main():
         # Collision detection
         for player in players:
             if pygame.Rect.colliderect(ball.getRect(), player.getRect()):
-                ball.hit(10)
-        # for i in range(len(players)):
-        #     if pygame.Rect.colliderect(ball.getRect(), players[i].getRect()):
-        #         ball.resolve_collision(players[i].getRect())
-
+                section = player.getSection(ball)
+                ball.hit(section)
+       
         ball.update()
         # Updating the objects
         player1.update(player1YFac)
@@ -188,14 +185,14 @@ def main():
             player2.update(player2YFac)
         
         
-        if ball.posx <= 0 and ball.firstTime:
+        if ball.posx <= 0:
             player2Score += 1
             ball.reset()
             if ai is not None:
                 ai.reset()
 
         # If the ball goes out of bounds on the right side, Player 1 scores
-        if ball.posx >= WIDTH and ball.firstTime:
+        if ball.posx >= WIDTH:
             player1Score += 1
             ball.reset()
             if ai is not None:

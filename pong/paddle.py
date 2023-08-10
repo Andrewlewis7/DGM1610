@@ -12,13 +12,28 @@ class Paddle:
         self.prev_y = posy  # Add a variable to store the previous position of the paddle
 
         # Rect that is used to control the position and collision of the object
-        self.geekRect = pygame.Rect(posx, posy, width, height)
-        # Object that is blit on the screen
-        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+        self.paddleRect = pygame.Rect(posx, posy, width, height)
+        # Object that is built on the screen
+        self.rect = pygame.draw.rect(screen, self.color, self.paddleRect)
 
     # Used to display the object on the screen
     def display(self):
-        self.geek = pygame.draw.rect(screen, self.color, self.geekRect)
+        self.rect = pygame.draw.rect(screen, self.color, self.paddleRect)
+
+    def getSection(self, ball):
+        # Calculate the relative position of the ball on the paddle
+        relative_y = ball.posy - self.posy
+        
+        # Calculate the height of each section
+        section_height = self.height / 3
+        
+        # Determine which section the ball hits
+        if 0 <= relative_y < section_height:
+            return "top"
+        elif section_height <= relative_y < 2 * section_height:
+            return "middle"
+        else:
+            return "bottom"
 
     def update(self, yFac):
         # Calculate the speed of the paddle based on the change in position during each update
@@ -35,7 +50,7 @@ class Paddle:
             self.posy = HEIGHT - self.height
 
         # Updating the rect with the new values
-        self.geekRect = (self.posx, self.posy, self.width, self.height)
+        self.paddleRect = (self.posx, self.posy, self.width, self.height)
 
         return y_speed_paddle
 
@@ -47,5 +62,5 @@ class Paddle:
         screen.blit(text, textRect)
 
     def getRect(self):
-        return self.geekRect
+        return self.paddleRect
 
